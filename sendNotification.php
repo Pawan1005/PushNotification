@@ -1,6 +1,6 @@
 <?php
 function sendNotification() {
-    $url ="https://fcm.googleleapis.com/fcm/send";
+    $url ="http://fcm.googleleapis.com/fcm/send";
 
     $fields=array(
         "to"=>$_REQUEST['Token'],
@@ -8,10 +8,10 @@ function sendNotification() {
             "body"=>$_REQUEST['message'],
             "title"=>$_REQUEST['title'],
             "icon"=>$_REQUEST['icon'],
-            "click_action"=>"https://google.com"
+            "click_action"=>"http://google.com"
         )
     );
-    
+
     $header=array(
         'Authorization: key=AAAA5EiYF3k:APA91bEMbU4740xC5PO3dOUgiQJU1fCt9lyUoGD9SGy2vbLYsSTtPxgxh56A7lL-Qi42rduCV6bzzlAkigN0HKIxgOTLgfs5cRRnuKfLbKgvkpp4u9w9IY-etM06rN-sfojt36ncCrV7'
         'Content-Type:application/json'  
