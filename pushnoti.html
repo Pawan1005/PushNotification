@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Push Notification</title>
+    </head>
+    <body>
+        <h2>Fire base massaging app </h2>
+        <p id="token"></p>
+        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messageing.js"></script>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyCzcnwprI0IedPnnHKLzc4fL7SnmLVTRRM",
+                authDomain: "pushnotification-466c2.firebaseapp.com",
+                projectId: "pushnotification-466c2",
+                storageBucket: "pushnotification-466c2.appspot.com",
+                messagingSenderId: "980470470521",
+                appId: "1:980470470521:web:7f175985798c7043f9c1a8",
+                measurementId: "G-LRCT6YWXHZ"
+            };
+            firebase.initializeApp(firebaseConfig)
+            const messaging=firebase.messaging();
+            function InitializeFireBaseMessaging(){
+                messaging
+                    .requestPermission()
+                    .then(function (){
+                        console.log("Notification Permission")
+                        return messaging.getToken();
+                })
+                    .then(function(){
+                        console.log("Token : "+token);
+                        document.getElementById("token").innerHTML=token;
+                    })
+                    .catch(function(reason){
+                        console.log(reason);
+                    });
+            }
+            message.onMessage(function(payload){
+                console.log(payload);
+                const NotificationOption={
+                    body:payload.notification.body,
+                    icon:payload.notification.icon
+                };
+                if(notification.Permission==="granted"){
+                    var notification=new notification(payload.notification.title,NotificationOption)
+
+                    notification.onclick=function(ev) {
+                        ev.preventDefault();
+                        window.open(payload.notification.click_action,'_blank')
+                        notification.close();
+                    }
+                }
+            });
+            messaging.omTokenRefresh(function(){
+                messaging.getToken()
+                    .then(function (newToken){
+                        console.log("New Token : " +newtoken );
+                    })
+                    .catch(function (reason){
+                        console.log(reason);
+                    })
+            })
+            InitializeFireBaseMessaging();
+        </script>
+    </body>
+</html>
